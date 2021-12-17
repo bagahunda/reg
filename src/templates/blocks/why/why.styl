@@ -1,0 +1,64 @@
+.why
+  position relative
+  padding-bottom: 150px
+
+.why__blob
+  position: absolute
+  bottom: 2%
+  right: 2%
+  height: 300px
+  width: 300px
+  z-index: -1
+
+  +below(992px)
+    display none
+
+.why__content
+  display flex
+
+  +below(992px)
+    flex-direction: column-reverse
+
+
+.why__img
+  width 50%
+  position relative
+
+  +below(992px)
+    width 100%
+
+  .mask-img
+    width 100%
+    height 100%
+    -webkit-mask: url(../images/about-mask-svg.svg)
+    -webkit-mask-repeat: no-repeat
+    -webkit-mask-size: contain
+
+    +below(992px)
+      -webkit-mask-position: center center
+
+.why__bg
+  position: absolute
+  top: -11%
+  left: -17%
+  z-index: -1
+  height: 150px
+  animation: move_top 4s infinite
+
+  +below(992px)
+    display none
+
+  img
+    width 100%
+    height 100%
+
+.why__text
+  width 50%
+
+  +below(992px)
+    width 100%
+    margin-bottom 40px
+
+  h2
+    font-size: 3.1rem
+    line-height 1.2

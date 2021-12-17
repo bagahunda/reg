@@ -1,0 +1,123 @@
+html
+  box-sizing border-box
+
+*,
+*:before,
+*:after
+  box-sizing inherit
+
+body
+  font-family -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+  font-size: 18px
+
+
+:disabled, [disabled], [aria-disabled="true"]
+  cursor not-allowed
+
+.clearfix:after
+    content ""
+    display block
+    clear both
+
+a
+  -webkit-text-decoration-skip: ink
+  text-decoration-skip: ink
+
+.visuallyhidden:not(:focus):not(:active)
+  position: absolute
+  width: 1px
+  height: 1px
+  margin: -1px
+  border: 0
+  padding: 0
+  clip-path: inset(100%)
+  clip: rect(0 0 0 0)
+  overflow: hidden
+
+.svg-sprite
+  display none
+
+.container
+  margin 0 auto
+  width 90%
+  max-width: 1140px
+
+  &--flex
+    display flex
+
+    +below(992px)
+      flex-direction: column
+
+@keyframes move_left
+  0%
+    transform: translateX(-50%)
+
+  50%
+    transform: translateX(-57%)
+
+@keyframes move_top
+  0%,
+  100%
+    transform: translateY(0)
+
+  50%
+    transform: translateY(15px)
+
+.btn
+  display inline-flex
+  justify-content: center
+  align-items: center
+  padding 15px 30px
+  outline: none
+  border: 1px solid #5d78ff
+  border-radius: 7px
+  appearance: none
+  color: #fff
+  background-color: #5d78ff
+  cursor: pointer
+  transition: all 0.3s ease-in-out
+
+  &:hover
+    text-decoration: none
+    color: #fff
+    background-color: #3758ff
+    border-color: #2a4eff
+    box-shadow: 0 8px 20px rgba(56,87,241,.3)
+    transform: scale(1.03)
+
+.section-title
+  display flex
+  justify-content: center
+  text-align center
+
+  h2
+    max-width: 60%
+    font-size 3.1rem
+    line-height 1.2
+
+ul
+  padding: 0
+  margin: 0
+  list-style none
+  font-size: 20px
+
+  li
+    margin-bottom: 1em
+    position: relative
+    display flex
+
+    &:before
+      content: ""
+      margin-right: 0.5em
+      //margin-top: 0.2em
+      min-width: 1.5em
+      width: 1.5em
+      height: 1.5em
+      background-image embedurl('../images/list.svg', 'utf8')
+      background-size: cover
+      background-repeat: no-repeat
+      border-radius: 50%
+
+.error
+  li:before
+    background-image embedurl('../images/list--error.svg', 'utf8')

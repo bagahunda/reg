@@ -1,0 +1,23 @@
+include ../bemto/bemto.pug
+include ../mixins/mixins
+include ../blocks/header/header
+include ../blocks/footer/footer
+include ../blocks/scripts/scripts
+
+-
+  set_bemto_settings({
+    prefix: '',
+    element: '__',
+    modifier: '--'
+  })
+
+
+doctype html
+html(lang='ru')
+  include ../blocks/head/head
+  body
+    +header()
+    block content
+    +footer()
+    block scripts
+    +scripts(['build.js'])

@@ -1,0 +1,31 @@
+
+include ../bemto/bemto.pug
+
+include ../blocks/header/header
+include ../blocks/hero/hero
+include ../blocks/why/why
+include ../blocks/session/session
+include ../blocks/reviews/reviews
+include ../blocks/footer/footer
+include ../blocks/scripts/scripts
+
+-
+  set_bemto_settings({
+    prefix: '',
+    element: '__',
+    modifier: '--'
+  })
+
+doctype html
+html(lang='ru')
+  include ../blocks/head/head
+  body
+    +header()
+    main
+      +hero()
+      +why()
+      +session()
+      +reviews
+    +footer()
+    block scripts
+    +scripts(['build.js'])

@@ -1,0 +1,90 @@
+.hero
+  padding 200px 0
+  position: relative
+
+  +below(992px)
+    padding-bottom: 50px
+
+.hero__bg
+  position: absolute
+  top: 0
+  left: 0
+  z-index: -1
+  width: 60%
+
+  svg
+    width: 100%
+    height: 100%
+
+.hero__content
+  padding: 0 20px 0 0
+  position: relative
+  width 50%
+
+  +below(992px)
+    width 100%
+    margin-bottom 60px
+
+  span
+    font-size: 24px
+    position: relative
+    display: block
+    margin-bottom 20px
+
+  h1
+    margin-bottom 20px
+    font-size: 2.5rem
+    line-height 1.2
+
+  p
+    font-size 1.5rem
+
+.hero__blob
+  width: 440px
+  height: 440px
+  position: absolute
+  z-index: -1
+  top: -45%
+  left: -45%
+
+  +below(992px)
+    display none
+
+.hero__btn
+  margin-top: 30px
+  color: #fff
+
+.hero__img
+  width 50%
+  position relative
+
+  +below(992px)
+    width 100%
+
+  .mask-img
+    width 100%
+    height 100%
+    margin-left auto
+    -webkit-mask: url(../images/hero-mask-svg.png)
+    -webkit-mask-repeat: no-repeat
+    -webkit-mask-size: contain
+    -webkit-mask-position: center center
+
+.hero__img-bg
+  position: absolute
+  top: -55px
+  left: 50%
+  -webkit-transform: translateX(-50%)
+  transform: translateX(-50%)
+  z-index: -1
+  height: 150px
+  animation: move_left 5s infinite linear
+
+.hero__footer
+  position: absolute
+  bottom: 20px
+  left: -130px
+  animation: move_top 5s infinite linear
+
+  +below(992px)
+    display none

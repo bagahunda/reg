@@ -1,0 +1,11 @@
+mixin header()
+  .svg-sprite
+    include ../sprite/svg.svg
+  +b.header
+    .container.container--flex
+      .logo
+        h1 Маргарита Походня
+          span регрессолог
+      a.btn(href="#") Бесплатная консультация
+    //- svg.icon
+    //-   use(xlink:href="#logo")
