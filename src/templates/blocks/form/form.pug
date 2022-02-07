@@ -1,0 +1,60 @@
+mixin form()
+  .promo
+    .container
+      h2 Запись на бесплатную консультацию
+      p Ответьте, пожалуйста, на приведенные ниже вопросы, чтобы я смогла на первой консультации быть для вас максимально полезной. Спасибо!
+
+  form.form
+    .form__row.form__row--required
+      .container.container--slim
+        label(for="name") Ваше имя и фамилия
+        input(name="name" id="name" type="text" required)
+
+    .form__row.form__row--required
+      .container.container--slim
+        label(for="email") Электронная почта
+        input(name="email" id="email" type="email" required)
+
+    .form__row.form__row--required
+      .container.container--slim
+        label(for="age") Ваш возраст
+        input(name="age" id="age" type="text" required)
+
+    .form__row.form__row--required
+      .container.container--slim
+        label(for="phone") Ваш номер телефона
+        input(name="phone" id="phone" type="phone" required)
+
+    .form__row
+      .container.container--slim
+        label(for="skype") Ваш скайп(если есть)
+        input(name="skype" id="skype" type="text")
+
+    .form__row.form__row--required
+      .container.container--slim
+        label(for="marriage") Семейное положение
+        input(name="marriage" id="marriage" type="text" required)
+
+    .form__row.form__row--required
+      .container.container--slim
+        label(for="education") Какое у вас образование
+        input(name="education" id="education" type="text" required)
+
+    .form__row.form__row--required
+      .container.container--slim
+        label(for="tried") К каким еще специалистам вы обращались, чтобы решить эту проблему (психолог, регрессолог, расстановщик, тета-хилер...)?
+        input(name="tried" id="tried" type="text" required)
+
+    .form__row.form__row--required
+      .container.container--slim
+        label(for="problem") Опишите кратко вашу проблему или ситуацию, которую вы хотите разрешить
+        input(name="problem" id="problem" type="text" required)
+
+    .form__row.form__row--required
+      .container.container--slim
+        label(for="date") Удобная дата и время для проведения консультации
+        input(name="date" id="date" type="text" required)
+
+    .form__row
+      .container.container--slim
+        button.btn(type="submit") Записаться

@@ -1,0 +1,36 @@
+.promo
+  padding 150px 0 0
+
+  h2
+    font-size 2rem
+    text-align center
+
+  p
+    text-align center
+
+.form
+  padding-bottom 50px
+
+.form__row
+  label
+    margin-bottom 0.5rem
+
+  &--required label:after
+    content: "*"
+    margin-left: 0.2em
+    color: red
+
+  input
+    display: block
+    width: 100%
+    margin: 0 0 1rem 0
+    padding: 0.5em
+    font-size: 1.5rem
+    border: 0
+    border-radius: 0.125rem 0.25rem
+    border: 1px solid #5d78ff
+    outline: none
+    transition: all 0.3s ease-in-out
+
+    &:focus
+      border-color: #3758ff

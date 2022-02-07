@@ -33,3 +33,63 @@ tl.to(".blob", 3, {
       d: "M455.4 151.1c43.1 36.7 73.4 92.8 60.8 136.3-12.7 43.5-68.1 74.4-111.3 119.4-43.1 45-74 104.1-109.8 109-35.9 5-76.7-44.2-111.8-89.2-35.2-45-64.7-85.8-70.8-132.6-6-46.8 11.6-99.6 46.7-136.3 35.2-36.6 88-57.2 142.4-58.8 54.5-1.7 110.6 15.6 153.8 52.2z",
     },
   });
+
+const _supabase = supabase.createClient('https://ifgbxajfuphwwyointxh.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMTQ0NTQ5NCwiZXhwIjoxOTQ3MDIxNDk0fQ.qfl2Rd1Uwya9SYEqNuMGG6qI54ZBYTQ4vaqjGTkw9BE');
+
+const form = document.querySelector('.form');
+
+if (form) {
+  form.addEventListener('submit', ($event) => {
+    $event.preventDefault();
+    const name = document.getElementById('name');
+    const email = document.getElementById('email');
+    const age = document.getElementById('age');
+    const phone = document.getElementById('phone');
+    const skype = document.getElementById('skype');
+    const marriage = document.getElementById('marriage');
+    const education = document.getElementById('education');
+    const tried = document.getElementById('tried');
+    const problem = document.getElementById('problem');
+    const date = document.getElementById('date');
+    const payload = {
+      name: name.value,
+      email: email.value,
+      age: age.value,
+      phone: phone.value,
+      skype: skype.value,
+      marriage: marriage.value,
+      education: education.value,
+      tried: tried.value,
+      problem: problem.value,
+      date: date.value
+    };
+    saveClient(payload);
+  })
+}
+
+function loadClients() {
+    let error = '';
+  _supabase
+    .from('clients')
+    .select()
+    .then(res => {
+      console.log('clients ->', res.data);
+    })
+    .catch(err => {
+      error = err;
+    })
+}
+
+function saveClient(payload) {
+  _supabase
+    .from('clients')
+    .insert(payload)
+    .then(res => {
+      console.log('insert client ->', res);
+    })
+    .catch(err => {
+      console.log('oops', err);
+    })
+}
+
+loadClients();

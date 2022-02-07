@@ -11,9 +11,18 @@
     background: #fff
     box-shadow: 0 10px 20px 0 rgba(50,65,141,.1)
 
+  +below(810px)
+    position relative
+
   .container--flex
     justify-content space-between
     align-items center
+
+    +below(992px)
+      flex-direction: row
+
+    +below(810px)
+      flex-direction: column
 
   h1
     margin: 0
