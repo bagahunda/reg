@@ -3,6 +3,10 @@
   padding: 150px 0
   margin-top: 100px
 
+  +below(480px)
+    margin-top 50px
+    padding-top 50px
+
   .container--flex
     justify-content: space-between
 
@@ -32,6 +36,11 @@
   position: -webkit-sticky
   top: 150px
   color: #f8f9fa
+
+  +below(992px)
+    position relative
+    top:  auto
+    margin-bottom 50px
 
 .reviews__item
   background: #fff
