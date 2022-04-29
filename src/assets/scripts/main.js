@@ -61,8 +61,15 @@ function login(email, password) {
 }
 
 function setToken(response) {
-  if (response.user.confirmation_sent_at && response.session &&  !response.session.access_token) {
-    alert('Confirmation Email Sent')
+  if (response.user.confirmation_sent_at && !response.session) {
+    const container = document.querySelector('.login__form');
+    const form = document.querySelector('.form')
+    const message = document.createElement('p');
+    const messageText = `На вашу почту ${response.user.email} выслано письмо для подтверждения аккаунта. Просто нажмите на ссылку в письме.`;
+    message.style.color = 'green';
+    message.textContent = messageText;
+    container.appendChild(message);
+    form.reset();
   } else {
     window.location.href = '/course-content.html';
   }
