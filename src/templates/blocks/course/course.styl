@@ -1,0 +1,133 @@
+.course
+  padding 150px 0 0
+
+  +below(810px)
+    padding 50px 0 0
+
+.course__title
+  h1
+    display flex
+    flex-direction: column
+    font-size: 2.5rem
+    line-height: 1.2
+    text-align center
+
+    span
+      font-size 1.5rem
+      color rgba(0, 0, 0, 0.6)
+
+  h2
+    font-size: 2rem
+    line-height: 1.2
+    text-align center
+
+.course__description
+  display flex
+  margin-top 2em
+  text-align left
+
+  +below(810px)
+    overflow hidden
+    flex-direction: column
+    align-items center
+
+  svg
+    height 300px
+    min-width 306px
+
+  p
+    padding-left 1em
+
+    +below(810px)
+      padding-left 0
+      padding-top 1em
+
+.course__content
+  margin-top 2em
+  padding-bottom 2em
+
+.course__content-item
+  display flex
+  align-items: center
+
+  &:not(:first-child)
+    margin-top 1em
+
+.counter
+  svg
+    height 27px
+    width 30px
+
+.course__content-item-description
+  display flex
+  align-items center
+
+  p
+    padding-left 1em
+    margin 0
+
+
+.overflow
+  width 100%
+  height 100%
+  position fixed
+  top 0
+  left 0
+  background-color rgba(0, 0, 0, 0.8)
+  z-index 9
+
+.login
+  width 90%
+  max-width 600px
+  position absolute
+  top 50%
+  left 50%
+  transform translate(-50%, -50%)
+  background-color #fff
+  padding 1em
+  border-radius 10px
+  z-index 10
+
+.course__buy
+  padding-bottom 2em
+  text-align center
+
+  p
+    margin 0
+
+  p + p:not(.card-info__number)
+    margin-top 1em
+
+.price
+  font-size 3rem
+
+  span
+    margin-right 0.3ch
+
+.card-info
+  margin-top 1.5em
+
+
+.card-info__number
+  display flex
+  align-items: center
+  justify-content center
+  margin-top 0
+  font-size 2em
+
+  span
+    display flex
+    align-items center
+    margin-left 0.5em
+    color: #007bff
+    font-size 0.4em
+    cursor pointer
+
+  svg
+    width 1em
+    height 1em
+    stroke rgba(0, 0, 0, 0.4)
+    cursor pointer
+
+.course__buy-instruction
+  font-size 1.3em

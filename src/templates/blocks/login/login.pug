@@ -1,0 +1,13 @@
+mixin login()
+  .login
+    .login__header
+      h2 Вход
+    .login__form
+      form.form.login-form
+        .form__row
+          input.form__input(type="email" id="email" placeholder="Почта" required)
+        .form__row
+          input.form__input(type="password" id="password" placeholder="Пароль" required)
+        .form__row.form__row--action
+          button.btn(type="submit") Войти
+          a.link(href="/registration.html") Зарегистрироваться

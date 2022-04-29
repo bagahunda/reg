@@ -1,0 +1,24 @@
+include ../bemto/bemto.pug
+
+include ../blocks/header/header
+include ../blocks/login/login
+include ../blocks/footer/footer
+include ../blocks/scripts/scripts
+
+-
+  set_bemto_settings({
+    prefix: '',
+    element: '__',
+    modifier: '--'
+  })
+
+doctype html
+html(lang='ru')
+  include ../blocks/head/head
+  body
+    +header()
+    main
+    +login()
+    +footer()
+    block scripts
+    +scripts(['https://cdn.jsdelivr.net/npm/@supabase/supabase-js', 'build.js'])
