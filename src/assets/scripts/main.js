@@ -173,13 +173,18 @@ if (currentPage === '/course-content.html') {
 }
 
 if (currentPage === '/registration.html') {
+  const whiteList = ['fomenkoinna0@gmail.com', 'dmitriy.troy@gmail.com', 'hyper-renata@mail.ru', 'elena.pochodnya@gmail.com'];
   const signupForm = document.querySelector('.signup-form');
   window.userToken = null;
   signupForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const email = event.target[0].value;
     const password = event.target[1].value;
-    signUp(email, password);
+    if (whiteList.includes(email)) {
+      signUp(email, password);
+    } else {
+      window.location.href = '/registration.html';
+    }
   });
 }
 
