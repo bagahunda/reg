@@ -80,6 +80,10 @@ function setToken(response) {
 const currentPage = window.location.pathname;
 
 if (currentPage === "/") {
+  const params = window.location.href.split('#');
+  if (params[1] && params[1].includes('access_token')) {
+    window.location.href = '/course-content.html';
+  }
   // blob animation
   var tl = new TimelineMax({
     yoyo: true,
