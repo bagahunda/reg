@@ -179,7 +179,7 @@ if (currentPage === '/course-content.html') {
 }
 
 if (currentPage === '/registration.html') {
-  const whiteList = ['fomenkoinna0@gmail.com', 'dmitriy.troy@gmail.com', 'hyper-renata@mail.ru', 'elena.pochodnya@gmail.com'];
+  const whiteList = ['fomenkoinna0@gmail.com', 'dmitriy.troy@gmail.com', 'hyper-renata@mail.ru', 'elena.pochodnya@gmail.com', 'tan4ik_09@list.ru'];
   const signupForm = document.querySelector('.signup-form');
   window.userToken = null;
   signupForm.addEventListener('submit', (event) => {
