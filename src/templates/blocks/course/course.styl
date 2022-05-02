@@ -64,12 +64,35 @@
     width 30px
 
 .course__content-item-description
-  display flex
-  align-items center
+  // display flex
+  // align-items center
+
+  svg
+    width 1em
+    height 1em
+    position relative
+    top 3px
 
   p
     padding-left 1em
     margin 0
+    cursor pointer
+    font-weight 500
+
+  .hidden
+    margin-top 1em
+    padding-left 2em
+    display none
+
+    p
+      font-weight 400
+
+  &.active
+    .hidden
+      display block
+
+    svg
+      transform rotate(180deg)
 
 
 .overflow

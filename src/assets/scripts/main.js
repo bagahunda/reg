@@ -145,6 +145,7 @@ if (currentPage === "form.html") {
 }
 
 if (currentPage === '/course.html') {
+  const points = document.querySelectorAll('.course__content-item-description');
   const copyEl = document.querySelector('.js-copy');
   const cardInfo = document.querySelector('.card-info');
   copyEl.addEventListener('click', () => {
@@ -163,6 +164,11 @@ if (currentPage === '/course.html') {
         console.error(err);
       })
   });
+  points.forEach(point => {
+    point.addEventListener('click', (e) => {
+      e.target.closest('.course__content-item-description').classList.toggle('active');
+    });
+  })
 }
 
 if (currentPage === '/course-content.html') {
