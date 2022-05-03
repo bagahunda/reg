@@ -50,18 +50,39 @@
 .course__content
   margin-top 2em
   padding-bottom 2em
+  counter-reset section
 
 .course__content-item
   display flex
-  align-items: center
 
   &:not(:first-child)
     margin-top 1em
 
 .counter
+  position relative
+  font-size 2em
+  font-weight 700
+  font-style italic
+  line-height 1
+  min-width 2ch
+
+  &:before
+    content counter(section)
+    counter-increment section
+    position absolute
+    width 2ch
+    top 0
+    text-align right
+    z-index 1
+    background: -webkit-linear-gradient(263deg,#42d392 25%,#647eff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
   svg
     height 27px
     width 30px
+    opacity 0
 
 .course__content-item-description
   // display flex
