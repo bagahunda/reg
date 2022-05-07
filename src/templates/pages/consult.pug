@@ -3,7 +3,6 @@ include ../bemto/bemto.pug
 
 include ../blocks/header/header
 include ../blocks/subheader/subheader
-include ../blocks/indexLinks/indexLinks
 include ../blocks/hero/hero
 include ../blocks/why/why
 include ../blocks/session/session
@@ -21,15 +20,14 @@ include ../blocks/scripts/scripts
 doctype html
 html(lang='ru')
   include ../blocks/head/head
-  body
+  body.bg-white
     +header()
     main
       +subheader()
-      +indexLinks()
-      //- +hero()
-      //- +why()
-      //- +session()
-      //- +reviews
+      +hero()
+      +why()
+      +session()
+      +reviews
     +footer()
     block scripts
     +scripts(['https://cdn.jsdelivr.net/npm/@supabase/supabase-js', 'build.js'])

@@ -1,12 +1,12 @@
-const nav = document.querySelector(".header");
+// const nav = document.querySelector(".header");
 
-window.addEventListener("scroll", function () {
-  if (window.pageYOffset > 2) {
-    nav.classList.add("header--scrolled");
-  } else {
-    nav.classList.remove("header--scrolled");
-  }
-});
+// window.addEventListener("scroll", function () {
+//   if (window.pageYOffset > 2) {
+//     nav.classList.add("header--scrolled");
+//   } else {
+//     nav.classList.remove("header--scrolled");
+//   }
+// });
 
 const _supabase = supabase.createClient(
   "https://ifgbxajfuphwwyointxh.supabase.co",
