@@ -1,6 +1,7 @@
 include ../bemto/bemto.pug
 
 include ../blocks/header/header
+include ../blocks/subheader/subheader
 include ../blocks/course/course
 include ../blocks/footer/footer
 include ../blocks/scripts/scripts
@@ -17,6 +18,7 @@ html(lang='ru')
   include ../blocks/head/head
   body
     +header()
+    +subheader()
     main
     +course()
     +footer()
