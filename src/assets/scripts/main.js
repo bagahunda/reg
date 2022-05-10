@@ -111,7 +111,7 @@ if (currentPage === "/") {
     });
 }
 
-if (currentPage === "form.html") {
+if (currentPage === "/form.html") {
   const consultForm = document.querySelector(".consult-form");
 
   if (consultForm) {
@@ -142,6 +142,28 @@ if (currentPage === "form.html") {
       saveClient(payload);
     });
   }
+}
+
+if (currentPage === "/marathon.html") {
+  console.log('marathon');
+  const copyEl = document.querySelector('.js-copy');
+  const cardInfo = document.querySelector('.card-info__number');
+  copyEl.addEventListener('click', () => {
+    navigator.clipboard.writeText('5536913874725217')
+      .then(() => {
+        const message = document.createElement('span');
+        message.style.color = 'green';
+        message.style.marginTop = 0;
+        message.textContent = 'Номер карты успешно копирован';
+        cardInfo.appendChild(message);
+        setTimeout(() => {
+          message.remove();
+        }, 2000)
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+  });
 }
 
 if (currentPage === '/course.html') {
