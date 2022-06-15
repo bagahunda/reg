@@ -144,8 +144,7 @@ if (currentPage === "/form.html") {
   }
 }
 
-if (currentPage === "/marathon.html") {
-  console.log('marathon');
+if (currentPage === "/marathon.html" || currentPage === "/energoproriv.html") {
   const copyEl = document.querySelector('.js-copy');
   const cardInfo = document.querySelector('.card-info__number');
   copyEl.addEventListener('click', () => {
@@ -193,7 +192,7 @@ if (currentPage === '/course.html') {
   })
 }
 
-if (currentPage === '/course-content.html') {
+if (currentPage === '/course-content.html' || currentPage === '/energoproryv-content.html') {
   const user = _supabase.auth.user()
   if (!user) {
     window.location.href = '/login.html';
