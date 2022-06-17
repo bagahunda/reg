@@ -53,14 +53,24 @@ function login(email, password) {
   _supabase.auth
     .signIn({ email, password })
     .then((response) => {
-      response.error ? alert(response.error.message) : setToken(response);
+      let redirect = ''
+      const whiteList = ['fomenkoinna0@gmail.com', 'dmitriy.troy@gmail.com', 'hyper-renata@mail.ru', 'elena.pochodnya@gmail.com', 'tan4ik_09@list.ru', 'lukashina-elena@mail.ru', 'irchik1962@icloud.com'];
+      const marathonWhitelist = [];
+      if (whiteList.includes(email)) {
+        redirect = "course-content";
+      } else if (marathonWhitelist.includes(email)) {
+        redirect = "energoproryv-content";
+      } else {
+        redirect = "/"
+      }
+      response.error ? alert(response.error.message) : setToken(response, redirect);
     })
     .catch((err) => {
       alert(err.response.text);
     })
 }
 
-function setToken(response) {
+function setToken(response, redirect = "/") {
   if (response.user.confirmation_sent_at && !response.session) {
     const container = document.querySelector('.login__form');
     const form = document.querySelector('.form')
@@ -71,7 +81,7 @@ function setToken(response) {
     container.appendChild(message);
     form.reset();
   } else {
-    window.location.href = '/course-content.html';
+    window.location.href = `/${redirect}.html`;
   }
 }
 
@@ -82,7 +92,8 @@ const currentPage = window.location.pathname;
 if (currentPage === "/") {
   const params = window.location.href.split('#');
   if (params[1] && params[1].includes('access_token')) {
-    window.location.href = '/course-content.html';
+    // window.location.href = '/course-content.html';
+    window.location.href = '/';
   }
   // blob animation
   var tl = new TimelineMax({
@@ -192,9 +203,19 @@ if (currentPage === '/course.html') {
   })
 }
 
-if (currentPage === '/course-content.html' || currentPage === '/energoproryv-content.html') {
+if (currentPage === '/course-content.html') {
+  const whiteList = ['fomenkoinna0@gmail.com', 'dmitriy.troy@gmail.com', 'hyper-renata@mail.ru', 'elena.pochodnya@gmail.com', 'tan4ik_09@list.ru', 'lukashina-elena@mail.ru', 'irchik1962@icloud.com'];
+  const marathonWhitelist = [];
   const user = _supabase.auth.user()
-  if (!user) {
+  if (!user || !whiteList.includes(user.email)) {
+    window.location.href = '/login.html';
+  }
+}
+
+if (currentPage === '/energoproryv-content.html') {
+  const marathonWhitelist = [];
+  const user = _supabase.auth.user()
+  if (!user || !marathonWhitelist.includes(user.email)) {
     window.location.href = '/login.html';
   }
 }
