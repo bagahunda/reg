@@ -55,7 +55,7 @@ function login(email, password) {
     .then((response) => {
       let redirect = ''
       const whiteList = ['fomenkoinna0@gmail.com', 'dmitriy.troy@gmail.com', 'hyper-renata@mail.ru', 'elena.pochodnya@gmail.com', 'tan4ik_09@list.ru', 'lukashina-elena@mail.ru', 'irchik1962@icloud.com'];
-      const marathonWhitelist = ["alena_pta@inbox.ru"];
+      const marathonWhitelist = ["alena_pta@inbox.ru", "Michuraeva@icloud.com"];
       if (whiteList.includes(email)) {
         redirect = "course-content";
       } else if (marathonWhitelist.includes(email)) {
@@ -212,7 +212,7 @@ if (currentPage === '/course-content.html') {
 }
 
 if (currentPage === '/energoproryv-content.html') {
-  const marathonWhitelist = ["alena_pta@inbox.ru"];
+  const marathonWhitelist = ["alena_pta@inbox.ru", "Michuraeva@icloud.com"];
   const user = _supabase.auth.user()
   if (!user || !marathonWhitelist.includes(user.email)) {
     window.location.href = '/login.html';
@@ -220,7 +220,7 @@ if (currentPage === '/energoproryv-content.html') {
 }
 
 if (currentPage === '/registration.html') {
-  const whiteList = ['fomenkoinna0@gmail.com', 'dmitriy.troy@gmail.com', 'hyper-renata@mail.ru', 'elena.pochodnya@gmail.com', 'tan4ik_09@list.ru', 'lukashina-elena@mail.ru', 'irchik1962@icloud.com', "alena_pta@inbox.ru"];
+  const whiteList = ['fomenkoinna0@gmail.com', 'dmitriy.troy@gmail.com', 'hyper-renata@mail.ru', 'elena.pochodnya@gmail.com', 'tan4ik_09@list.ru', 'lukashina-elena@mail.ru', 'irchik1962@icloud.com', "alena_pta@inbox.ru", "Michuraeva@icloud.com"];
   const signupForm = document.querySelector('.signup-form');
   window.userToken = null;
   signupForm.addEventListener('submit', (event) => {
