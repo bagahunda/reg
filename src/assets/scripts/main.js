@@ -155,7 +155,7 @@ if (currentPage === "/form.html") {
   }
 }
 
-if (currentPage === "/marathon.html" || currentPage === "/energoproriv.html") {
+if (currentPage === "/marathon.html" || currentPage === "/energoproriv.html" || currentPage === "/alladin.html") {
   const copyEl = document.querySelector('.js-copy');
   const cardInfo = document.querySelector('.card-info__number');
   copyEl.addEventListener('click', () => {
