@@ -85,16 +85,118 @@ function setToken(response, redirect = "/") {
   }
 }
 
-// loadClients();
+function getCurrentUser() {
+  const user = _supabase.auth.user();
+  return user;
+}
+
+function loadPurchases(userId) {
+  const purchases = _supabase
+    .from("profiles")
+    .select("purchases")
+    .eq("id", userId);
+  return purchases;
+};
 
 const currentPage = window.location.pathname;
 
-if (currentPage === "/") {
-  const params = window.location.href.split('#');
-  if (params[1] && params[1].includes('access_token')) {
-    // window.location.href = '/course-content.html';
-    window.location.href = '/';
-  }
+let purchases = null;
+
+const currentUser = getCurrentUser();
+
+if (currentUser) {
+  loadPurchases(currentUser.id)
+    .then(res => {
+      purchases = res.data[0].purchases;
+
+      if (currentPage === "/") {
+        const params = window.location.href.split('#');
+        if (params[1] && params[1].includes('access_token')) {
+          // window.location.href = '/course-content.html';
+          window.location.href = '/login.html';
+        } else {
+          console.log('root');
+          if (currentUser && purchases) {
+            const target = document.querySelector(".links");
+            const el = document.createElement("a");
+            el.classList.add("links__item");
+            el.setAttribute('href', "./purchases.html");
+            const text = document.createElement("h3");
+            text.innerHTML = "Ваши покупки";
+            target.prepend(el);
+            el.appendChild(text);
+            /* Redirecting the user to the purchases page. */
+            // window.location.href = '/purchases.html';
+          }
+        }
+      }
+
+      if (currentPage === "/purchases.html") {
+        const purchasesMap = {
+          course: {
+            title: "Курс энергопрактик «С&nbsp;Маргаритой к Изобилию»",
+            url: "./course-content.html"
+          },
+          expressLuck: {
+            title: "Марафон «Экспресс удача»",
+            url: "./marathon.html"
+          },
+          energoproryv: {
+            title: "Марафон «ЭнергоПрорыв»",
+            url: "./energoproryv-content.html"
+          }
+        };
+        const target = document.getElementById("purchases");
+        if (!purchases) {
+          const el = document.createElement("p");
+          el.innerText = "Вы ещё ничего не купили."
+          el.style.color = "white";
+          target.appendChild(el);
+        } else {
+          purchases.forEach(purchase => {
+            const target = document.getElementById("purchases");
+            const el = document.createElement("a");
+            el.classList.add("links__item");
+            el.setAttribute('href', purchasesMap[purchase].url);
+            const text = document.createElement("h3");
+            text.innerHTML = purchasesMap[purchase].title;
+            target.appendChild(el);
+            el.appendChild(text);
+          });
+        }
+      }
+
+      if (currentPage === '/course-content.html') {
+        // const whiteList = ['fomenkoinna0@gmail.com', 'dmitriy.troy@gmail.com', 'elena.pochodnya@gmail.com', 'tan4ik_09@list.ru', 'lukashina-elena@mail.ru', 'irchik1962@icloud.com'];
+        // const user = _supabase.auth.user()
+        if (!currentUser) {
+          window.location.href = '/login.html';
+        }
+        if (currentUser && !(purchases.includes("course"))) {
+          window.location.href = '/';
+        }
+        // if (!user || !whiteList.includes(user.email)) {
+        //   window.location.href = '/login.html';
+        // }
+      }
+
+      if (currentPage === '/energoproryv-content.html') {
+        // const marathonWhitelist = ["alena_pta@inbox.ru", "michuraeva@icloud.com", "klyshinskaya@yandex.ru", "hyper-renata@mail.ru"];
+        // const user = _supabase.auth.user()
+        // if (!user || !marathonWhitelist.includes(user.email)) {
+        //   window.location.href = '/login.html';
+        // }
+        if (!currentUser) {
+          window.location.href = '/login.html';
+        }
+        if (currentUser && !(purchases.includes("course"))) {
+          window.location.href = '/';
+        }
+      }
+    })
+}
+
+if (currentPage === "/consult.html") {
   // blob animation
   var tl = new TimelineMax({
     yoyo: true,
@@ -201,22 +303,6 @@ if (currentPage === '/course.html') {
       e.target.closest('.course__content-item-description').classList.toggle('active');
     });
   })
-}
-
-if (currentPage === '/course-content.html') {
-  const whiteList = ['fomenkoinna0@gmail.com', 'dmitriy.troy@gmail.com', 'elena.pochodnya@gmail.com', 'tan4ik_09@list.ru', 'lukashina-elena@mail.ru', 'irchik1962@icloud.com'];
-  const user = _supabase.auth.user()
-  if (!user || !whiteList.includes(user.email)) {
-    window.location.href = '/login.html';
-  }
-}
-
-if (currentPage === '/energoproryv-content.html') {
-  const marathonWhitelist = ["alena_pta@inbox.ru", "michuraeva@icloud.com", "klyshinskaya@yandex.ru", "hyper-renata@mail.ru"];
-  const user = _supabase.auth.user()
-  if (!user || !marathonWhitelist.includes(user.email)) {
-    window.location.href = '/login.html';
-  }
 }
 
 if (currentPage === '/registration.html') {
