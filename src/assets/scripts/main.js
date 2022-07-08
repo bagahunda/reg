@@ -139,7 +139,7 @@ if (currentUser) {
           },
           expressLuck: {
             title: "Марафон «Экспресс удача»",
-            url: "./marathon.html"
+            url: "./marathon-content.html"
           },
           energoproryv: {
             title: "Марафон «ЭнергоПрорыв»",
@@ -189,7 +189,21 @@ if (currentUser) {
         if (!currentUser) {
           window.location.href = '/login.html';
         }
-        if (currentUser && !(purchases.includes("course"))) {
+        if (currentUser && !(purchases.includes("energoproryv"))) {
+          window.location.href = '/';
+        }
+      }
+
+      if (currentPage === '/marathon-content.html') {
+        // const marathonWhitelist = ["alena_pta@inbox.ru", "michuraeva@icloud.com", "klyshinskaya@yandex.ru", "hyper-renata@mail.ru"];
+        // const user = _supabase.auth.user()
+        // if (!user || !marathonWhitelist.includes(user.email)) {
+        //   window.location.href = '/login.html';
+        // }
+        if (!currentUser) {
+          window.location.href = '/login.html';
+        }
+        if (currentUser && !(purchases.includes("expressLuck"))) {
           window.location.href = '/';
         }
       }
