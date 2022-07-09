@@ -320,18 +320,13 @@ if (currentPage === '/course.html') {
 }
 
 if (currentPage === '/registration.html') {
-  const whiteList = ['fomenkoinna0@gmail.com', 'dmitriy.troy@gmail.com', 'hyper-renata@mail.ru', 'elena.pochodnya@gmail.com', 'tan4ik_09@list.ru', 'lukashina-elena@mail.ru', 'irchik1962@icloud.com', "alena_pta@inbox.ru", "michuraeva@icloud.com", "klyshinskaya@yandex.ru"];
   const signupForm = document.querySelector('.signup-form');
   window.userToken = null;
   signupForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const email = event.target[0].value;
     const password = event.target[1].value;
-    if (whiteList.includes(email)) {
-      signUp(email, password);
-    } else {
-      window.location.href = '/registration.html';
-    }
+    signUp(email, password);
   });
 }
 
