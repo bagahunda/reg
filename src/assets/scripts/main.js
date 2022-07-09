@@ -81,7 +81,7 @@ function setToken(response, redirect = "/") {
     container.appendChild(message);
     form.reset();
   } else {
-    window.location.href = `${redirect}.html`;
+    window.location.href = `/${redirect}.html`;
   }
 }
 
