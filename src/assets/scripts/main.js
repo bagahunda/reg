@@ -53,16 +53,16 @@ function login(email, password) {
   _supabase.auth
     .signIn({ email, password })
     .then((response) => {
-      let redirect = ''
-      const whiteList = ['fomenkoinna0@gmail.com', 'dmitriy.troy@gmail.com', 'elena.pochodnya@gmail.com', 'tan4ik_09@list.ru', 'lukashina-elena@mail.ru', 'irchik1962@icloud.com'];
-      const marathonWhitelist = ["alena_pta@inbox.ru", "michuraeva@icloud.com", "klyshinskaya@yandex.ru", "hyper-renata@mail.ru"];
-      if (whiteList.includes(email)) {
-        redirect = "course-content";
-      } else if (marathonWhitelist.includes(email)) {
-        redirect = "energoproryv-content";
-      } else {
-        redirect = "/"
-      }
+      let redirect = '/'
+      // const whiteList = ['fomenkoinna0@gmail.com', 'dmitriy.troy@gmail.com', 'elena.pochodnya@gmail.com', 'tan4ik_09@list.ru', 'lukashina-elena@mail.ru', 'irchik1962@icloud.com'];
+      // const marathonWhitelist = ["alena_pta@inbox.ru", "michuraeva@icloud.com", "klyshinskaya@yandex.ru", "hyper-renata@mail.ru"];
+      // if (whiteList.includes(email)) {
+      //   redirect = "course-content";
+      // } else if (marathonWhitelist.includes(email)) {
+      //   redirect = "energoproryv-content";
+      // } else {
+      //   redirect = "/"
+      // }
       response.error ? alert(response.error.message) : setToken(response, redirect);
     })
     .catch((err) => {
@@ -81,7 +81,7 @@ function setToken(response, redirect = "/") {
     container.appendChild(message);
     form.reset();
   } else {
-    window.location.href = `/${redirect}.html`;
+    window.location.href = `${redirect}.html`;
   }
 }
 
