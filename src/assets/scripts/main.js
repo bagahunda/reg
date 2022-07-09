@@ -53,7 +53,6 @@ function login(email, password) {
   _supabase.auth
     .signIn({ email, password })
     .then((response) => {
-      let redirect = '/'
       // const whiteList = ['fomenkoinna0@gmail.com', 'dmitriy.troy@gmail.com', 'elena.pochodnya@gmail.com', 'tan4ik_09@list.ru', 'lukashina-elena@mail.ru', 'irchik1962@icloud.com'];
       // const marathonWhitelist = ["alena_pta@inbox.ru", "michuraeva@icloud.com", "klyshinskaya@yandex.ru", "hyper-renata@mail.ru"];
       // if (whiteList.includes(email)) {
@@ -63,14 +62,14 @@ function login(email, password) {
       // } else {
       //   redirect = "/"
       // }
-      response.error ? alert(response.error.message) : setToken(response, redirect);
+      response.error ? alert(response.error.message) : setToken(response);
     })
     .catch((err) => {
       alert(err.response.text);
     })
 }
 
-function setToken(response, redirect = "/") {
+function setToken(response) {
   if (response.user.confirmation_sent_at && !response.session) {
     const container = document.querySelector('.login__form');
     const form = document.querySelector('.form')
@@ -81,7 +80,7 @@ function setToken(response, redirect = "/") {
     container.appendChild(message);
     form.reset();
   } else {
-    window.location.href = `/${redirect}.html`;
+    window.location.href = "/";
   }
 }
 
