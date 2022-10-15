@@ -42,40 +42,32 @@ function signUp(email, password) {
   _supabase.auth
     .signUp({ email, password })
     .then((response) => {
-      response.error ? alert(response.error.message) : setToken(response);
+      response.error ? alert(response.error.message) : setToken(response.data);
     })
     .catch((err) => {
       alert(err);
-    })
+    });
 }
 
 function login(email, password) {
   _supabase.auth
-    .signIn({ email, password })
+    .signInWithPassword({ email, password })
     .then((response) => {
-      // const whiteList = ['fomenkoinna0@gmail.com', 'dmitriy.troy@gmail.com', 'elena.pochodnya@gmail.com', 'tan4ik_09@list.ru', 'lukashina-elena@mail.ru', 'irchik1962@icloud.com'];
-      // const marathonWhitelist = ["alena_pta@inbox.ru", "michuraeva@icloud.com", "klyshinskaya@yandex.ru", "hyper-renata@mail.ru"];
-      // if (whiteList.includes(email)) {
-      //   redirect = "course-content";
-      // } else if (marathonWhitelist.includes(email)) {
-      //   redirect = "energoproryv-content";
-      // } else {
-      //   redirect = "/"
-      // }
-      response.error ? alert(response.error.message) : setToken(response);
+      console.log("login ->", response);
+      response.error ? alert(response.error.message) : setToken(response.data);
     })
     .catch((err) => {
       alert(err.response.text);
-    })
+    });
 }
 
 function setToken(response) {
-  if (response.user.confirmation_sent_at && !response.session) {
-    const container = document.querySelector('.login__form');
-    const form = document.querySelector('.form')
-    const message = document.createElement('p');
+  if (!response.session) {
+    const container = document.querySelector(".login__form");
+    const form = document.querySelector(".form");
+    const message = document.createElement("p");
     const messageText = `На вашу почту ${response.user.email} выслано письмо для подтверждения аккаунта. Просто нажмите на ссылку в письме.`;
-    message.style.color = 'green';
+    message.style.color = "green";
     message.textContent = messageText;
     container.appendChild(message);
     form.reset();
@@ -85,8 +77,7 @@ function setToken(response) {
 }
 
 function getCurrentUser() {
-  const user = _supabase.auth.user();
-  return user;
+  return _supabase.auth.getUser();
 }
 
 function loadPurchases(userId) {
@@ -95,31 +86,31 @@ function loadPurchases(userId) {
     .select("purchases")
     .eq("id", userId);
   return purchases;
-};
+}
 
 const currentPage = window.location.pathname;
 
 let purchases = null;
 
-const currentUser = getCurrentUser();
-
-if (currentUser) {
-  loadPurchases(currentUser.id)
-    .then(res => {
+// const currentUser = getCurrentUser();
+let currentUser = null;
+getCurrentUser().then((res) => {
+  currentUser = res.data.user;
+  if (currentUser) {
+    loadPurchases(currentUser.id).then((res) => {
       purchases = res.data[0].purchases;
 
       if (currentPage === "/") {
-        const params = window.location.href.split('#');
-        if (params[1] && params[1].includes('access_token')) {
+        const params = window.location.href.split("#");
+        if (params[1] && params[1].includes("access_token")) {
           // window.location.href = '/course-content.html';
-          window.location.href = '/login.html';
+          window.location.href = "/login.html";
         } else {
-          console.log('root');
           if (currentUser && purchases) {
             const target = document.querySelector(".links");
             const el = document.createElement("a");
             el.classList.add("links__item");
-            el.setAttribute('href', "./purchases.html");
+            el.setAttribute("href", "./purchases.html");
             const text = document.createElement("h3");
             text.innerHTML = "Ваши покупки";
             target.prepend(el);
@@ -134,29 +125,29 @@ if (currentUser) {
         const purchasesMap = {
           course: {
             title: "Курс энергопрактик «С&nbsp;Маргаритой к Изобилию»",
-            url: "./course-content.html"
+            url: "./course-content.html",
           },
           expressLuck: {
             title: "Марафон «Экспресс удача»",
-            url: "./marathon-content.html"
+            url: "./marathon-content.html",
           },
           energoproryv: {
             title: "Марафон «ЭнергоПрорыв»",
-            url: "./energoproryv-content.html"
-          }
+            url: "./energoproryv-content.html",
+          },
         };
         const target = document.getElementById("purchases");
         if (!purchases) {
           const el = document.createElement("p");
-          el.innerText = "Вы ещё ничего не купили."
+          el.innerText = "Вы ещё ничего не купили.";
           el.style.color = "white";
           target.appendChild(el);
         } else {
-          purchases.forEach(purchase => {
+          purchases.forEach((purchase) => {
             const target = document.getElementById("purchases");
             const el = document.createElement("a");
             el.classList.add("links__item");
-            el.setAttribute('href', purchasesMap[purchase].url);
+            el.setAttribute("href", purchasesMap[purchase].url);
             const text = document.createElement("h3");
             text.innerHTML = purchasesMap[purchase].title;
             target.appendChild(el);
@@ -165,49 +156,50 @@ if (currentUser) {
         }
       }
 
-      if (currentPage === '/course-content.html') {
+      if (currentPage === "/course-content.html") {
         // const whiteList = ['fomenkoinna0@gmail.com', 'dmitriy.troy@gmail.com', 'elena.pochodnya@gmail.com', 'tan4ik_09@list.ru', 'lukashina-elena@mail.ru', 'irchik1962@icloud.com'];
         // const user = _supabase.auth.user()
         if (!currentUser) {
-          window.location.href = '/login.html';
+          window.location.href = "/login.html";
         }
-        if (currentUser && !(purchases.includes("course"))) {
-          window.location.href = '/';
+        if (currentUser && !purchases.includes("course")) {
+          window.location.href = "/";
         }
         // if (!user || !whiteList.includes(user.email)) {
         //   window.location.href = '/login.html';
         // }
       }
 
-      if (currentPage === '/energoproryv-content.html') {
+      if (currentPage === "/energoproryv-content.html") {
         // const marathonWhitelist = ["alena_pta@inbox.ru", "michuraeva@icloud.com", "klyshinskaya@yandex.ru", "hyper-renata@mail.ru"];
         // const user = _supabase.auth.user()
         // if (!user || !marathonWhitelist.includes(user.email)) {
         //   window.location.href = '/login.html';
         // }
         if (!currentUser) {
-          window.location.href = '/login.html';
+          window.location.href = "/login.html";
         }
-        if (currentUser && !(purchases.includes("energoproryv"))) {
-          window.location.href = '/';
+        if (currentUser && !purchases.includes("energoproryv")) {
+          window.location.href = "/";
         }
       }
 
-      if (currentPage === '/marathon-content.html') {
+      if (currentPage === "/marathon-content.html") {
         // const marathonWhitelist = ["alena_pta@inbox.ru", "michuraeva@icloud.com", "klyshinskaya@yandex.ru", "hyper-renata@mail.ru"];
         // const user = _supabase.auth.user()
         // if (!user || !marathonWhitelist.includes(user.email)) {
         //   window.location.href = '/login.html';
         // }
         if (!currentUser) {
-          window.location.href = '/login.html';
+          window.location.href = "/login.html";
         }
-        if (currentUser && !(purchases.includes("expressLuck"))) {
-          window.location.href = '/';
+        if (currentUser && !purchases.includes("expressLuck")) {
+          window.location.href = "/";
         }
       }
-    })
-}
+    });
+  }
+});
 
 if (currentPage === "/consult.html") {
   // blob animation
@@ -270,58 +262,66 @@ if (currentPage === "/form.html") {
   }
 }
 
-if (currentPage === "/marathon.html" || currentPage === "/energoproriv.html" || currentPage === "/alladin.html") {
-  const copyEl = document.querySelector('.js-copy');
-  const cardInfo = document.querySelector('.card-info__number');
-  copyEl.addEventListener('click', () => {
-    navigator.clipboard.writeText('5536913874725217')
+if (
+  currentPage === "/marathon.html" ||
+  currentPage === "/energoproriv.html" ||
+  currentPage === "/alladin.html"
+) {
+  const copyEl = document.querySelector(".js-copy");
+  const cardInfo = document.querySelector(".card-info__number");
+  copyEl.addEventListener("click", () => {
+    navigator.clipboard
+      .writeText("5536913874725217")
       .then(() => {
-        const message = document.createElement('span');
-        message.style.color = 'green';
+        const message = document.createElement("span");
+        message.style.color = "green";
         message.style.marginTop = 0;
-        message.textContent = 'Номер карты успешно копирован';
+        message.textContent = "Номер карты успешно копирован";
         cardInfo.appendChild(message);
         setTimeout(() => {
           message.remove();
-        }, 2000)
+        }, 2000);
       })
       .catch((err) => {
         console.error(err);
-      })
+      });
   });
 }
 
-if (currentPage === '/course.html') {
-  const points = document.querySelectorAll('.course__content-item-description');
-  const copyEl = document.querySelector('.js-copy');
-  const cardInfo = document.querySelector('.card-info');
-  copyEl.addEventListener('click', () => {
-    navigator.clipboard.writeText('5536913874725217')
+if (currentPage === "/course.html") {
+  const points = document.querySelectorAll(".course__content-item-description");
+  const copyEl = document.querySelector(".js-copy");
+  const cardInfo = document.querySelector(".card-info");
+  copyEl.addEventListener("click", () => {
+    navigator.clipboard
+      .writeText("5536913874725217")
       .then(() => {
-        const message = document.createElement('p');
-        message.style.color = 'green';
+        const message = document.createElement("p");
+        message.style.color = "green";
         message.style.marginTop = 0;
-        message.textContent = 'Номер карты успешно копирован';
+        message.textContent = "Номер карты успешно копирован";
         cardInfo.appendChild(message);
         setTimeout(() => {
           message.remove();
-        }, 2000)
+        }, 2000);
       })
       .catch((err) => {
         console.error(err);
-      })
+      });
   });
-  points.forEach(point => {
-    point.addEventListener('click', (e) => {
-      e.target.closest('.course__content-item-description').classList.toggle('active');
+  points.forEach((point) => {
+    point.addEventListener("click", (e) => {
+      e.target
+        .closest(".course__content-item-description")
+        .classList.toggle("active");
     });
-  })
+  });
 }
 
-if (currentPage === '/registration.html') {
-  const signupForm = document.querySelector('.signup-form');
+if (currentPage === "/registration.html") {
+  const signupForm = document.querySelector(".signup-form");
   window.userToken = null;
-  signupForm.addEventListener('submit', (event) => {
+  signupForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const email = event.target[0].value;
     const password = event.target[1].value;
@@ -329,9 +329,9 @@ if (currentPage === '/registration.html') {
   });
 }
 
-if (currentPage === '/login.html') {
-  const loginForm = document.querySelector('.login-form');
-  loginForm.addEventListener('submit', (event) => {
+if (currentPage === "/login.html") {
+  const loginForm = document.querySelector(".login-form");
+  loginForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const email = event.target[0].value;
     const password = event.target[1].value;
