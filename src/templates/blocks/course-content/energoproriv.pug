@@ -1,3 +1,5 @@
+- var price = "<i class='price'>6<span></span>000 &#8381;</i>"
+
 mixin energoproriv()
   .marathon
     .container
@@ -50,7 +52,7 @@ mixin energoproriv()
         .course__title
           h2 Стоимость Марафона
           h3
-            i.price 1299 руб.
+            i.price !{price}
 
       p Оплата на карту
 
