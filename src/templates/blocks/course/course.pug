@@ -1,10 +1,11 @@
-- var price = "<i class='price'>11<span></span>000 &#8381;</i>"
-- var packetPrice = "<i class='price'>75<span></span>000 &#8381;</i>"
+- var price = "<i class='price'>16<span></span>000 &#8381;</i>"
+- var sale = "<i class='price'>8<span></span>000 &#8381;</i>"
+- var packetPrice = "<i class='price'>76<span></span>000 &#8381;</i>"
 mixin course()
   .course
     .container
       .course__title
-        p.pre Курс энергопрактик
+        p.pre Мини-Курс энергопрактик
         h1 «С Маргаритой к Изобилию»
           span 10 энергопрактик, которые изменят вашу жизнь
       .course__description
@@ -349,7 +350,9 @@ mixin course()
         .course__title
           h2 Сколько стоит и как купить
           p На сегодняшний день цена курса составляет
-          h3 !{price}
+          h3.is-striked !{price}
+          h3.sale !{sale}
+            span  (до 1 января 2023 включительно)
           p Если вы пришли на курс после прохождения любого марафона, то вам доступно специальное предложение:
             br
             | 5 персональных сессий регрессии всего за
