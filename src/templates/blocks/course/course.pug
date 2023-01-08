@@ -1,5 +1,4 @@
 - var price = "<i class='price'>16<span></span>000 &#8381;</i>"
-- var sale = "<i class='price'>8<span></span>000 &#8381;</i>"
 - var packetPrice = "<i class='price'>76<span></span>000 &#8381;</i>"
 mixin course()
   .course
@@ -350,9 +349,7 @@ mixin course()
         .course__title
           h2 Сколько стоит и как купить
           p На сегодняшний день цена курса составляет
-          h3.is-striked !{price}
-          h3.sale !{sale}
-            span  (до 1 января 2023 включительно)
+          h3 !{price}
           p Если вы пришли на курс после прохождения любого марафона, то вам доступно специальное предложение:
             br
             | 5 персональных сессий регрессии всего за
