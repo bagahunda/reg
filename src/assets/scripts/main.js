@@ -239,7 +239,7 @@ if (currentPage === "/form.html") {
       const email = document.getElementById("email");
       const age = document.getElementById("age");
       const phone = document.getElementById("phone");
-      const skype = document.getElementById("skype");
+      const telegram = document.getElementById("telegram");
       const marriage = document.getElementById("marriage");
       const education = document.getElementById("education");
       const tried = document.getElementById("tried");
@@ -250,7 +250,7 @@ if (currentPage === "/form.html") {
         email: email.value,
         age: age.value,
         phone: phone.value,
-        skype: skype.value,
+        telegram: telegram.value,
         marriage: marriage.value,
         education: education.value,
         tried: tried.value,
