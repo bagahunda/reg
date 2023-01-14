@@ -31,7 +31,7 @@ function saveClient(payload) {
     .from("clients")
     .insert(payload)
     .then((res) => {
-      console.log("insert client ->", res);
+      window.location.href = "/";
     })
     .catch((err) => {
       console.log("oops", err);
@@ -257,7 +257,7 @@ if (currentPage === "/form.html") {
         problem: problem.value,
         date: date.value,
       };
-      saveClient(payload);
+      saveClient(payload)
     });
   }
 }
