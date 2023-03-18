@@ -262,53 +262,53 @@ if (currentPage === "/form.html") {
   }
 }
 
-if (
-  currentPage === "/marathon.html" ||
-  currentPage === "/energoproriv.html" ||
-  currentPage === "/alladin.html"
-) {
-  const copyEl = document.querySelector(".js-copy");
-  const cardInfo = document.querySelector(".card-info__number");
-  copyEl.addEventListener("click", () => {
-    navigator.clipboard
-      .writeText("5536913874725217")
-      .then(() => {
-        const message = document.createElement("span");
-        message.style.color = "green";
-        message.style.marginTop = 0;
-        message.textContent = "Номер карты успешно копирован";
-        cardInfo.appendChild(message);
-        setTimeout(() => {
-          message.remove();
-        }, 2000);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  });
-}
+// if (
+//   currentPage === "/marathon.html" ||
+//   currentPage === "/energoproriv.html" ||
+//   currentPage === "/alladin.html"
+// ) {
+//   const copyEl = document.querySelector(".js-copy");
+//   const cardInfo = document.querySelector(".card-info__number");
+//   copyEl.addEventListener("click", () => {
+//     navigator.clipboard
+//       .writeText("5536913874725217")
+//       .then(() => {
+//         const message = document.createElement("span");
+//         message.style.color = "green";
+//         message.style.marginTop = 0;
+//         message.textContent = "Номер карты успешно копирован";
+//         cardInfo.appendChild(message);
+//         setTimeout(() => {
+//           message.remove();
+//         }, 2000);
+//       })
+//       .catch((err) => {
+//         console.error(err);
+//       });
+//   });
+// }
 
 if (currentPage === "/course.html") {
   const points = document.querySelectorAll(".course__content-item-description");
-  const copyEl = document.querySelector(".js-copy");
-  const cardInfo = document.querySelector(".card-info");
-  copyEl.addEventListener("click", () => {
-    navigator.clipboard
-      .writeText("5536913874725217")
-      .then(() => {
-        const message = document.createElement("p");
-        message.style.color = "green";
-        message.style.marginTop = 0;
-        message.textContent = "Номер карты успешно копирован";
-        cardInfo.appendChild(message);
-        setTimeout(() => {
-          message.remove();
-        }, 2000);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  });
+  // const copyEl = document.querySelector(".js-copy");
+  // const cardInfo = document.querySelector(".card-info");
+  // copyEl.addEventListener("click", () => {
+  //   navigator.clipboard
+  //     .writeText("5536913874725217")
+  //     .then(() => {
+  //       const message = document.createElement("p");
+  //       message.style.color = "green";
+  //       message.style.marginTop = 0;
+  //       message.textContent = "Номер карты успешно копирован";
+  //       cardInfo.appendChild(message);
+  //       setTimeout(() => {
+  //         message.remove();
+  //       }, 2000);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // });
   points.forEach((point) => {
     point.addEventListener("click", (e) => {
       e.target
