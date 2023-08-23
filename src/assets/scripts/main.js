@@ -135,6 +135,10 @@ getCurrentUser().then((res) => {
             title: "Марафон «ЭнергоПрорыв»",
             url: "./energoproryv-content.html",
           },
+          screenwriter: {
+            title: "Я сам режиссёр и сценарист",
+            url: "./screenwriter.html"
+          }
         };
         const target = document.getElementById("purchases");
         if (!purchases) {
