@@ -1,0 +1,17 @@
+include ../bemto/bemto.pug
+
+include ../blocks/header/header
+include ../blocks/game/game
+include ../blocks/footer/footer
+include ../blocks/scripts/scripts
+
+doctype html
+html(lang='ru')
+  include ../blocks/head/head
+  body
+    +header()
+    main
+    +game()
+    +footer()
+    block scripts
+    +scripts(['https://cdn.jsdelivr.net/npm/@supabase/supabase-js', 'build.js'])
