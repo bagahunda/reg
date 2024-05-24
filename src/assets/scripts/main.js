@@ -245,7 +245,6 @@ if (currentPage === "/form.html") {
       const phone = document.getElementById("phone");
       const telegram = document.getElementById("telegram");
       const marriage = document.getElementById("marriage");
-      const education = document.getElementById("education");
       const tried = document.getElementById("tried");
       const problem = document.getElementById("problem");
       const date = document.getElementById("date");
@@ -256,7 +255,7 @@ if (currentPage === "/form.html") {
         phone: phone.value,
         telegram: telegram.value,
         marriage: marriage.value,
-        education: education.value,
+        education: '',
         tried: tried.value,
         problem: problem.value,
         date: date.value,
